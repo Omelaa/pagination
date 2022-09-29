@@ -11,7 +11,7 @@ interface IProps {
     withActions?: boolean;
     currentPage: number;
     launches: ILaunch[];
-    setCurrentPage: (page: number) => void;
+    setCurrentPage: (page: any) => void;
     setGetLaunchesForPage: (currentLaunch: ILaunch[]) => void;
 }
 
