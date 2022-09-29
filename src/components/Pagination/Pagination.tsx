@@ -1,6 +1,6 @@
 import {FC, useEffect} from "react";
 
-import css from './pagination.module.scss';
+import css from './Pagination.module.scss';
 
 import {ILaunch} from "../../interfaces";
 
