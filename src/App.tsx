@@ -11,7 +11,7 @@ import {spaceService} from "./services";
 const App: FC = () => {
     const [launches, setLaunches] = useState<ILaunch[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const [getLaunchesForPage, setGetLaunchesForPage] = useState<ILaunch[]>([]);
 
     useEffect(() => {
