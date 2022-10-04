@@ -1,0 +1,25 @@
+@import "../Header/Header.module";
+
+.footer {
+  border-radius: 25px;
+  border: 1px solid #EAEAEA;
+  background-color: #ffffff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.01), 0 10px 10px rgba(0, 0, 0, 0.01);
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__media {
+    display: flex;
+    grid-gap: 15px;
+
+    a {
+      transition: 0.5s opacity;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}
