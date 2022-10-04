@@ -1,0 +1,15 @@
+@import "../../App.module";
+
+
+.error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #EAEAEA;
+  border-radius: 15px;
+
+  h3{
+    font-size: 100px;
+  }
+}

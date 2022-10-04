@@ -13,6 +13,7 @@ interface IProps {
     launches: ILaunch[];
     setCurrentPage: (page: any) => void;
     setGetLaunchesForPage: (currentLaunch: ILaunch[]) => void;
+    loading: boolean;
 }
 
 const Pagination: FC<IProps> = ({
@@ -22,13 +23,14 @@ const Pagination: FC<IProps> = ({
                                     currentPage,
                                     launches,
                                     setGetLaunchesForPage,
-                                    withActions = true
+                                    withActions = true,
+                                    loading
                                 }) => {
 
-    const pageNumbers = [];
+    const pageNumbers = loading ? [1, 2, 3] : [];
 
-    for (let i = 1; i < Math.ceil(totalItems / perPage); i++) {
-        pageNumbers.push(i);
+    for (let i = 0; i < Math.ceil(totalItems / perPage); i++) {
+        pageNumbers.push(i + 1);
     }
 
     const lastLaunchIndex = currentPage * perPage;
@@ -42,7 +44,7 @@ const Pagination: FC<IProps> = ({
 
     useEffect(() => {
         setGetLaunchesForPage(currentLaunch);
-    },[currentPage]);
+    }, [launches, currentPage]);
 
     return (
         <div className={css.pagination}>

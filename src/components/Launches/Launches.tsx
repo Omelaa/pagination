@@ -11,10 +11,10 @@ interface IProps {
     loading: boolean;
 }
 
-export const Launches: FC<IProps> = ({currentLaunch, loading}) => {
+const Launches: FC<IProps> = ({currentLaunch, loading}) => {
 
     if (loading) {
-        return <h2 style={{textAlign: "center"}}>Loading...</h2>
+        return <h2 className={css.loading} style={{textAlign: "center"}}>Loading...</h2>
     }
 
     return (
@@ -27,5 +27,5 @@ export const Launches: FC<IProps> = ({currentLaunch, loading}) => {
 };
 
 export {
-    Launch
+    Launches
 };

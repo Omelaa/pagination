@@ -1,48 +1,39 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import css from './App.module.scss';
 
-import {Pagination, Launches} from "./components";
+import {Header, Footer, Tasks} from "./components";
 
-import {ILaunch} from "./interfaces";
-import {spaceService} from "./services";
+import {ClassesPage, ErrorPage, MainPage, PaginationPage, SettingsPage} from "./pages";
 
 
 const App: FC = () => {
-    const [launches, setLaunches] = useState<ILaunch[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [getLaunchesForPage, setGetLaunchesForPage] = useState<ILaunch[]>([]);
-
-    useEffect(() => {
-        const getLaunches = async () => {
-            try {
-                setLoading(true);
-                const res = await spaceService.getAll().then(data => data).then(data => data);
-                setLaunches(res.data);
-                setLoading(false);
-            } catch (e) {
-                alert("Виникла помилка!");
-            }
-        };
-
-        getLaunches();
-    }, []);
+    const auth = JSON.parse(localStorage.getItem('auth') || '');
 
     return (
-        <div className={css.container}>
-            <h1>Launches</h1>
-            <Launches currentLaunch={getLaunchesForPage} loading={loading}/>
-            <Pagination
-                perPage={8}
-                totalItems={launches.length}
-                withActions={true}
-                setCurrentPage={setCurrentPage}
-                launches={launches}
-                currentPage={currentPage}
-                setGetLaunchesForPage={setGetLaunchesForPage}
-            />
-        </div>
+        <BrowserRouter>
+            <div className={css.container}>
+                <Header/>
+                <main className={css.main}>
+                    <Tasks/>
+                    <div className={css.tasks}>
+                        <Switch>
+                            <Route exact path={"/"} component={MainPage}/>
+                            <Route path={"/pagination"} component={PaginationPage}/>
+                            <Route path={"/classes"} component={ClassesPage}/>
+                            {
+                                auth ?
+                                    <Route path={"/settings"} component={SettingsPage}/>
+                                    :
+                                    <Route path={"*"} component={ErrorPage}/>
+                            }
+                        </Switch>
+                    </div>
+                </main>
+                <Footer/>
+            </div>
+        </BrowserRouter>
     );
 }
 

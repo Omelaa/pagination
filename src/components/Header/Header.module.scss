@@ -1,0 +1,27 @@
+
+
+.header{
+  border-radius: 25px;
+  border: 1px solid #EAEAEA;
+  background-color: #ffffff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.01), 0 10px 10px rgba(0, 0, 0, 0.01);
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  animation: 1s linear 0s normal none infinite running rot;
+  -webkit-animation: 15s linear 0s normal none infinite running rot;
+  object-fit: scale-down;
+}
+
+@keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
